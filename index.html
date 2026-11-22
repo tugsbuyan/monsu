@@ -28,9 +28,9 @@
     }
   </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap');
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Pretendard', 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
     /* 모바일 프레임 스타일링 (데스크톱에서는 스마트폰 뷰, 모바일에서는 풀스크린) */
@@ -55,6 +55,14 @@
     }
     .pulse-card {
       animation: highlight-pulse 2s infinite ease-in-out;
+    }
+    /* 검색/클릭 용어 하이라이트 깜빡임 효과 */
+    @keyframes term-flash {
+      0%, 100% { background-color: #ffffff; }
+      50% { background-color: #fef08a; border-color: #eab308; }
+    }
+    .term-highlight {
+      animation: term-flash 1.2s ease-in-out 3;
     }
     .custom-scroll::-webkit-scrollbar {
       width: 4px;
@@ -926,17 +934,23 @@
     }
 
     // [화면 4] 필수 6대 용어 사전 렌더링
-    function renderTermsScreen() {
+    function renderTermsScreen(highlightKeyword = null) {
       const container = document.getElementById('terms-container');
       container.innerHTML = '';
 
       CORE_TERMS.forEach((term, index) => {
+        const isMatched = highlightKeyword && (term.termKo.includes(highlightKeyword) || term.tag.includes(highlightKeyword));
         const item = document.createElement('div');
-        item.className = "bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm space-y-2 hover:border-brand-300 transition-all";
+        item.id = `term-item-${index}`;
+        item.className = `p-4 rounded-2xl border transition-all ${
+          isMatched 
+            ? 'bg-amber-50/80 border-amber-400 shadow-md term-highlight' 
+            : 'bg-white border-slate-200/90 shadow-sm hover:border-brand-300'
+        }`;
         item.innerHTML = `
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2">
-              <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-800 text-[11px] font-bold flex items-center justify-center">
+              <span class="w-5 h-5 rounded-full ${isMatched ? 'bg-amber-500 text-white' : 'bg-brand-100 text-brand-800'} text-[11px] font-bold flex items-center justify-center">
                 ${index + 1}
               </span>
               <h4 class="text-sm font-bold text-slate-900">
@@ -948,7 +962,7 @@
               ${term.tag}
             </span>
           </div>
-          <div class="p-3 bg-slate-50 rounded-xl text-xs space-y-1.5 border border-slate-100">
+          <div class="p-3 bg-slate-50 rounded-xl text-xs space-y-1.5 border border-slate-100 mt-2">
             <p class="text-slate-700 leading-relaxed text-ko">
               <strong class="text-slate-900">뜻:</strong> ${term.descKo}
             </p>
@@ -958,12 +972,19 @@
           </div>
         `;
         container.appendChild(item);
+
+        if (isMatched) {
+          setTimeout(() => {
+            item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 150);
+        }
       });
       lucide.createIcons();
     }
 
     function goToTermsWithKeyword(keyword) {
       goToScreen(4);
+      renderTermsScreen(keyword);
     }
 
     // ==========================================
@@ -992,6 +1013,36 @@
       document.getElementById('test-date-badge').textContent = state.currentSimDate;
     }
 
+    // 초기 설정 폼에 저장된 상태 동기화
+    function hydrateSetupForm() {
+      if (state.userConfig) {
+        const termSelect = document.getElementById('select-term');
+        const deptSelect = document.getElementById('select-dept');
+        const customDeptInput = document.getElementById('input-custom-dept');
+
+        if (termSelect && state.userConfig.term) {
+          termSelect.value = state.userConfig.term;
+        }
+        if (deptSelect && state.userConfig.deptKey) {
+          deptSelect.value = state.userConfig.deptKey;
+        }
+        if (customDeptInput && state.userConfig.customDeptName) {
+          customDeptInput.value = state.userConfig.customDeptName;
+        }
+        handleDeptChange();
+
+        // 학년 버튼 상태 복원
+        const targetGrade = state.userConfig.grade || 1;
+        document.querySelectorAll('.btn-grade').forEach((btn, idx) => {
+          if (idx + 1 === targetGrade) {
+            btn.className = "btn-grade py-2 rounded-xl text-xs font-bold border border-brand-500 bg-brand-50 text-brand-700 shadow-sm";
+          } else {
+            btn.className = "btn-grade py-2 rounded-xl text-xs font-medium border border-slate-200 bg-slate-50 text-slate-600";
+          }
+        });
+      }
+    }
+
     function resetAllData() {
       if (confirm('모든 수강신청 체크 상태와 설정을 초기화할까요?')) {
         localStorage.removeItem('munsu_app_state');
@@ -1007,6 +1058,7 @@
         };
         updateDateLabels();
         setLanguageMode('both');
+        hydrateSetupForm();
         goToScreen(1);
       }
     }
@@ -1016,6 +1068,7 @@
       loadState();
       updateDateLabels();
       setLanguageMode(state.languageMode);
+      hydrateSetupForm();
       goToScreen(state.currentScreen || 1);
     });
   </script>
