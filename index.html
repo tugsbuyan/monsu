@@ -33,7 +33,7 @@
       font-family: 'Pretendard', 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
-    /* 모바일 프레임 스타일링 (데스크톱에서는 스마트폰 뷰, 모바일에서는 풀스크린) */
+    /* 모바일 프레임 스타일링 */
     .app-container {
       max-width: 440px;
       min-height: 100vh;
@@ -50,19 +50,19 @@
     
     /* 펄스 애니메이션 강조 */
     @keyframes highlight-pulse {
-      0%, 100% { border-color: #3b82f6; box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
-      50% { border-color: #1d4ed8; box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.15); }
+      0%, 100% { border-color: #3b82f6; box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+      50% { border-color: #1d4ed8; box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.15); }
     }
     .pulse-card {
       animation: highlight-pulse 2s infinite ease-in-out;
     }
-    /* 검색/클릭 용어 하이라이트 깜빡임 효과 */
+    /* 검색/클릭 용어 하이라이트 */
     @keyframes term-flash {
       0%, 100% { background-color: #ffffff; }
       50% { background-color: #fef08a; border-color: #eab308; }
     }
     .term-highlight {
-      animation: term-flash 1.2s ease-in-out 3;
+      animation: term-flash 1.2s 2 ease-in-out;
     }
     .custom-scroll::-webkit-scrollbar {
       width: 4px;
@@ -75,13 +75,13 @@
 </head>
 <body class="bg-slate-900 text-slate-800 antialiased min-h-screen flex justify-center selection:bg-brand-500 selection:text-white">
 
-  <!-- 메인 모바일 앱 컨테이너 -->
-  <div class="app-container border-x border-slate-200">
+  <!-- 스마트폰 프레임 래퍼 -->
+  <div class="app-container">
     
     <!-- 1. 상단 글로벌 헤더 -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-100 px-4 py-3">
-      <div class="flex items-center justify-between mb-2">
-        <div class="flex items-center space-x-2">
+      <div class="flex items-center justify-between mb-2.5">
+        <div class="flex items-center space-x-2.5">
           <div class="w-8 h-8 rounded-xl bg-brand-900 text-white flex items-center justify-center font-bold text-sm tracking-tighter shadow-sm">
             M
           </div>
@@ -91,16 +91,16 @@
           </div>
         </div>
 
-        <!-- 테스트/시뮬레이션 배지 -->
-        <div class="flex items-center bg-amber-50 border border-amber-200 rounded-full px-2.5 py-1 text-xs text-amber-800 font-medium">
-          <i data-lucide="calendar" class="w-3.5 h-3.5 mr-1 text-amber-600"></i>
-          <span id="currentSimDateLabel">2026.02.15</span>
-        </div>
+        <!-- 초기화 버튼 -->
+        <button onclick="resetAllData()" class="text-xs text-slate-400 hover:text-rose-600 flex items-center transition-colors px-2 py-1 rounded-lg hover:bg-slate-50" title="Шинэчлэх / 초기화">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 mr-1"></i>
+          <span class="text-[11px] font-medium">초기화</span>
+        </button>
       </div>
 
       <!-- 다국어 모드 토글 (Both / MN / KO) -->
       <div class="flex bg-slate-100 p-0.5 rounded-lg text-xs font-semibold text-slate-600">
-        <button onclick="setLanguageMode('both')" id="btn-lang-both" class="flex-1 py-1 rounded-md text-center transition-all bg-white text-brand-900 shadow-sm">
+        <button onclick="setLanguageMode('both')" id="btn-lang-both" class="flex-1 py-1 rounded-md text-center transition-all bg-white text-brand-900 shadow-sm font-bold">
           한국어 + Монгол
         </button>
         <button onclick="setLanguageMode('mn')" id="btn-lang-mn" class="flex-1 py-1 rounded-md text-center transition-all hover:text-slate-900">
@@ -112,22 +112,23 @@
       </div>
     </header>
 
-    <!-- 2. 메인 컨텐츠 영역 (화면 1~4 전환) -->
-    <main class="flex-1 p-4 pb-28 custom-scroll overflow-y-auto">
+    <!-- 2. 메인 컨텐츠 영역 (화면 1~3 전환) -->
+    <main class="flex-1 p-4 pb-20 custom-scroll overflow-y-auto">
 
       <!-- ============================================== -->
-      <!-- [화면 1] 시작 및 기본 설정 (Setup Screen) -->
+      <!-- [화면 1] 수강신청 안내 & 체크리스트 (Guide Screen) -->
       <!-- ============================================== -->
       <section id="screen-1" class="screen-view space-y-4">
+        
         <!-- 환영 배너 -->
         <div class="bg-gradient-to-br from-brand-900 to-brand-700 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
           <div class="relative z-10">
             <span class="inline-block bg-white/20 text-white text-[11px] font-medium px-2 py-0.5 rounded-full mb-2">
-              6팀 턱스부얀 프로젝트 · HMW
+              한밭대학교 국립대 · 몽골 유학생 가이드
             </span>
             <h2 class="text-xl font-bold mb-1">
-              <span class="text-ko">신입 몽골 유학생 수강신청</span>
-              <span class="text-mn block text-base font-medium text-brand-100">Шинэ элсэгч монгол оюутны бүртгэл</span>
+              <span class="text-ko">신입 몽골 유학생 수강신청 가이드</span>
+              <span class="text-mn block text-base font-medium text-brand-100">Шинэ элсэгч монгол оюутны хичээл сонголт</span>
             </h2>
             <p class="text-xs text-brand-100 leading-relaxed mt-2">
               <span class="text-ko">한밭대학교 첫 학기 수강신청을 몽골어와 쉬운 한국어로 안전하게 준비하세요!</span>
@@ -137,126 +138,31 @@
           <div class="absolute -right-4 -bottom-4 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
         </div>
 
-        <!-- 설정 폼 카드 -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
-          <div class="border-b border-slate-100 pb-3">
-            <h3 class="text-sm font-bold text-slate-800 flex items-center">
-              <i data-lucide="settings" class="w-4 h-4 mr-1.5 text-brand-600"></i>
-              <span class="text-ko">기본 정보 선택</span>
-              <span class="text-mn ml-1 text-slate-500 font-normal">/ Үндсэн тохиргоо</span>
-            </h3>
-            <p class="text-xs text-slate-500 mt-1">
-              <span class="text-ko">본인의 학과를 선택하면 학과별 공식 공지사항과 일정을 연결해 드립니다.</span>
-              <span class="text-mn block">Мэргэжлээ сонговол холбогдох албан ёсны зарыг бэлдэж өгнө.</span>
-            </p>
-          </div>
-
-          <!-- 학기 선택 -->
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">
-              <span class="text-ko">신청 학기</span>
-              <span class="text-mn text-slate-500"> / Хичээлийн улирал</span>
-            </label>
-            <select id="select-term" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
-              <option value="2026-1" selected>2026학년도 1학기 (2026 оны 1-р улирал)</option>
-              <option value="2026-2">2026학년도 2학기 (2026 оны 2-р улирал)</option>
-            </select>
-          </div>
-
-          <!-- 단과대 & 학과 선택 -->
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">
-              <span class="text-ko">소속 학과 (전공)</span>
-              <span class="text-mn text-slate-500"> / Тэнхим (Мэргэжил)</span>
-            </label>
-            <select id="select-dept" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" onchange="handleDeptChange()">
-              <optgroup label="정보기술대학 / Мэдээллийн технологи">
-                <option value="ce" selected>컴퓨터공학과 (Компьютерийн ухаан)</option>
-                <option value="ice">정보통신공학과 (Мэдээлэл холбоо)</option>
-                <option value="aisw">인공지능소프트웨어학과 (Хиймэл оюун & SW)</option>
-              </optgroup>
-              <optgroup label="공과대학 / Инженер">
-                <option value="me">기계공학과 (Механик инженер)</option>
-                <option value="ee">전기공학과 (Цахилгааны инженер)</option>
-                <option value="chembio">화학생명공학과 (Хими биологи)</option>
-              </optgroup>
-              <optgroup label="경상 및 인문대학 / Бизнес, Хүмүүнлэг">
-                <option value="biz">경영회계학과 (Бизнесийн удирдлага)</option>
-                <option value="pub">공공행정학과 (Төрийн удирдлага)</option>
-              </optgroup>
-              <option value="custom">기타 학과 직접 입력 (Бусад тэнхим)</option>
-            </select>
-            <input type="text" id="input-custom-dept" placeholder="학과명을 직접 입력하세요" class="hidden mt-2 w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
-          </div>
-
-          <!-- 학년 선택 -->
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">
-              <span class="text-ko">학년</span>
-              <span class="text-mn text-slate-500"> / Курс</span>
-            </label>
-            <div class="grid grid-cols-4 gap-2">
-              <button type="button" class="btn-grade py-2 rounded-xl text-xs font-bold border border-brand-500 bg-brand-50 text-brand-700" onclick="setGrade(1, this)">1학년 (1-р)</button>
-              <button type="button" class="btn-grade py-2 rounded-xl text-xs font-medium border border-slate-200 bg-slate-50 text-slate-600" onclick="setGrade(2, this)">2학년 (2-р)</button>
-              <button type="button" class="btn-grade py-2 rounded-xl text-xs font-medium border border-slate-200 bg-slate-50 text-slate-600" onclick="setGrade(3, this)">3학년 (3-р)</button>
-              <button type="button" class="btn-grade py-2 rounded-xl text-xs font-medium border border-slate-200 bg-slate-50 text-slate-600" onclick="setGrade(4, this)">4학년 (4-р)</button>
-            </div>
-          </div>
-
-          <!-- 액션 버튼 -->
-          <div class="pt-2">
-            <button onclick="createDraft()" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 active:scale-[0.99]">
-              <span class="text-ko text-sm">초안 만들기 (2번 화면으로)</span>
-              <span class="text-mn text-xs opacity-90">/ Төлөвлөгөө үүсгэх →</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- 팁 박스 -->
-        <div class="p-4 bg-sky-50 border border-sky-100 rounded-2xl flex items-start space-x-3 text-xs text-sky-900">
-          <i data-lucide="info" class="w-4 h-4 text-sky-600 flex-shrink-0 mt-0.5"></i>
-          <div>
-            <p class="font-bold text-ko">모든 신입생 공통 절차 우선 안내</p>
-            <p class="font-bold text-mn">Бүх шинэ оюутны нийтлэг алхмууд</p>
-            <p class="text-[11px] text-sky-800 mt-0.5 leading-relaxed">
-              <span class="text-ko">수강신청 기본 절차를 파악한 뒤 학과 공식 공지사항 원문 링크로 과목을 확정하세요.</span>
-              <span class="text-mn block">Ерөнхий дарааллыг ойлгосны дараа тэнхимийн албан ёсны зарыг шалгана уу.</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ============================================== -->
-      <!-- [화면 2] 수강신청 안내 & 체크리스트 (Guide Screen) -->
-      <!-- ============================================== -->
-      <section id="screen-2" class="screen-view hidden space-y-4">
-        
-        <!-- 학과 링크 공식 카드 (사용자 인터뷰 Q3 반영: 2단계 정보 제공) -->
+        <!-- 한밭대학교 공식 출처 연동 카드 -->
         <div class="bg-gradient-to-r from-blue-900 to-slate-800 text-white p-4 rounded-2xl shadow-sm">
           <div class="flex items-center justify-between mb-2">
             <span class="text-[11px] font-semibold bg-white/20 px-2 py-0.5 rounded-full flex items-center">
               <i data-lucide="building-2" class="w-3 h-3 mr-1"></i>
-              <span id="guide-dept-badge">컴퓨터공학과</span>
+              <span>한밭대학교 학사공지</span>
             </span>
             <span class="text-[10px] text-slate-300">공식 출처 연동</span>
           </div>
           <h3 class="text-sm font-bold leading-snug">
-            <span class="text-ko">학과별 수강 안내 공식 공지 확인</span>
-            <span class="text-mn block text-xs font-normal text-blue-200">Тэнхимийн албан ёсны хичээлийн зар шалгах</span>
+            <span class="text-ko">수강 안내 및 통합학사시스템</span>
+            <span class="text-mn block text-xs font-normal text-blue-200">Хичээлийн албан зар болон нэгдсэн систем</span>
           </h3>
           <p class="text-xs text-slate-300 mt-1 mb-3">
-            <span class="text-ko">변경될 수 있는 전공 개설과목과 졸업 이수규정은 학과 공지 원문에서 확인하세요.</span>
-            <span class="text-mn block text-[11px]">Өөрчлөгдөж болох хичээлийн жагсаалтыг тэнхимийн албан хуудаснаас үзнэ үү.</span>
+            <span class="text-ko">개설과목과 학사일정 원문 공지를 확인하고 통합학사시스템에서 신청하세요.</span>
+            <span class="text-mn block text-[11px]">Нээгдсэн хичээлүүдийг албан хуудаснаас шалган, системд нэвтэрч бүртгүүлнэ үү.</span>
           </p>
           <div class="flex space-x-2">
-            <a id="btn-dept-link" href="https://new.hanbat.ac.kr/ce/" target="_blank" rel="noopener noreferrer" class="flex-1 bg-white hover:bg-slate-100 text-brand-900 font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center shadow transition-all">
+            <a href="https://www.hanbat.ac.kr/kor/html/sub01/010101.html" target="_blank" rel="noopener noreferrer" class="flex-1 bg-white hover:bg-slate-100 text-brand-900 font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center shadow transition-all">
               <i data-lucide="external-link" class="w-3.5 h-3.5 mr-1.5 text-brand-600"></i>
-              <span class="text-ko">학과 공식 안내 열기</span>
-              <span class="text-mn ml-1">/ Албан ёсны зар</span>
+              <span class="text-ko">학사공지 원문</span>
+              <span class="text-mn ml-1">/ Сургуулийн зар</span>
             </a>
             <a href="https://my.hanbat.ac.kr" target="_blank" rel="noopener noreferrer" class="bg-blue-800/80 hover:bg-blue-800 text-white font-medium py-2 px-3 rounded-xl text-xs flex items-center justify-center transition-all">
+              <i data-lucide="log-in" class="w-3.5 h-3.5 mr-1"></i>
               <span>통합학사</span>
             </a>
           </div>
@@ -287,8 +193,8 @@
 
         <!-- 하단 액션 버튼 -->
         <div class="pt-2">
-          <button onclick="goToScreen(3)" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 active:scale-[0.99]">
-            <span class="text-ko text-sm">완료 체크 및 현황보기 (3번 화면으로)</span>
+          <button onclick="goToScreen(2)" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 active:scale-[0.99]">
+            <span class="text-ko text-sm">완료 체크 및 현황보기 (2번 화면으로)</span>
             <span class="text-mn text-xs opacity-90">/ Явц шалгах →</span>
             <i data-lucide="trending-up" class="w-4 h-4 ml-1"></i>
           </button>
@@ -297,34 +203,9 @@
 
 
       <!-- ============================================== -->
-      <!-- [화면 3] 진행 상황 모니터링 & 재조율 (Progress Screen) -->
+      <!-- [화면 2] 진행 상황 모니터링 & 현황 (Progress Screen) -->
       <!-- ============================================== -->
-      <section id="screen-3" class="screen-view hidden space-y-4">
-        
-        <!-- 재조율(Rule-based Re-scheduling) 경고 배너 (마감일 지난 항목 감지 시 표출) -->
-        <div id="reschedule-banner" class="hidden p-4 bg-rose-50 border-2 border-rose-300 rounded-2xl shadow-sm text-rose-900 animate-bounce-subtle">
-          <div class="flex items-start space-x-3">
-            <div class="p-2 bg-rose-100 text-rose-600 rounded-xl flex-shrink-0">
-              <i data-lucide="alert-triangle" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <div class="flex items-center space-x-1.5">
-                <span class="text-xs font-extrabold uppercase px-2 py-0.5 bg-rose-600 text-white rounded">
-                  판단 규칙 ④ 재조율 작동
-                </span>
-                <span class="text-xs font-bold text-rose-700">마감 지난 단계 발생!</span>
-              </div>
-              <h4 class="text-sm font-bold mt-1 text-rose-950">
-                <span class="text-ko">예정일이 지난 미완료 단계가 있습니다!</span>
-                <span class="text-mn block text-xs">Хугацаа хэтэрсэн дуусаагүй алхам байна!</span>
-              </h4>
-              <p class="text-xs text-rose-800 mt-1 leading-relaxed">
-                <span class="text-ko">미완료된 단계를 가장 위로 재배치했습니다. 즉시 확인 후 학과 사무실 또는 국제교류원(042-821-1800)에 문의하세요.</span>
-                <span class="text-mn block text-[11px]">Энэ алхмыг тэргүүн эгнээнд тавилаа. Тэнхим эсвэл Олон улсын төвтэй яаралтай холбогдоно уу.</span>
-              </p>
-            </div>
-          </div>
-        </div>
+      <section id="screen-2" class="screen-view hidden space-y-4">
 
         <!-- 진행 통계 요약 카드 -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
@@ -379,20 +260,20 @@
         </div>
 
         <!-- 액션 버튼 -->
-        <div class="pt-2">
-          <button onclick="goToScreen(2)" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 active:scale-[0.99]">
+        <div class="pt-2 flex flex-col space-y-2">
+          <button onclick="goToScreen(1)" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 active:scale-[0.99]">
             <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i>
-            <span class="text-ko text-sm">남은 단계 다시 보기 (2번 화면으로)</span>
-            <span class="text-mn text-xs opacity-90">/ Үлдсэн алхмыг харах</span>
+            <span class="text-ko text-sm">단계별 가이드 다시 보기 (1번 화면으로)</span>
+            <span class="text-mn text-xs opacity-90">/ Алхмуудыг харах</span>
           </button>
         </div>
       </section>
 
 
       <!-- ============================================== -->
-      <!-- [화면 4] 도움말 & 필수 6대 용어 사전 (Help Screen) -->
+      <!-- [화면 3] 도움말 & 필수 6대 용어 사전 (Help Screen) -->
       <!-- ============================================== -->
-      <section id="screen-4" class="screen-view hidden space-y-4">
+      <section id="screen-3" class="screen-view hidden space-y-4">
         
         <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="flex items-center space-x-2 mb-1">
@@ -448,103 +329,32 @@
 
     </main>
 
-    <!-- 3. 하단 네비게이션 탭 바 (모바일 한 손 조작 최적화) -->
-    <nav class="fixed bottom-0 w-full max-w-[440px] bg-white border-t border-slate-200 px-2 py-2 flex justify-around items-center z-40 shadow-lg">
-      <button onclick="goToScreen(1)" id="tab-1" class="tab-btn flex flex-col items-center py-1 px-2 rounded-xl text-brand-600 transition-colors">
-        <i data-lucide="home" class="w-5 h-5 mb-0.5"></i>
-        <span class="text-[10px] font-bold">1. 설정</span>
-        <span class="text-[8px] text-slate-400 leading-none">Тохиргоо</span>
-      </button>
-      <button onclick="goToScreen(2)" id="tab-2" class="tab-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-400 transition-colors">
+    <!-- 3. 하단 네비게이션 탭 바 (3개 화면) -->
+    <nav class="fixed bottom-0 w-full max-w-[440px] bg-white border-t border-slate-200 px-3 py-2 flex justify-around items-center z-40 shadow-lg">
+      <button onclick="goToScreen(1)" id="tab-1" class="tab-btn flex flex-col items-center py-1 px-3 rounded-xl text-brand-600 transition-colors">
         <i data-lucide="list-checks" class="w-5 h-5 mb-0.5"></i>
-        <span class="text-[10px] font-bold">2. 가이드</span>
+        <span class="text-[10px] font-bold">1. 가이드</span>
         <span class="text-[8px] text-slate-400 leading-none">Заавар</span>
       </button>
-      <button onclick="goToScreen(3)" id="tab-3" class="tab-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-400 transition-colors">
+      <button onclick="goToScreen(2)" id="tab-2" class="tab-btn flex flex-col items-center py-1 px-3 rounded-xl text-slate-400 transition-colors">
         <i data-lucide="pie-chart" class="w-5 h-5 mb-0.5"></i>
-        <span class="text-[10px] font-bold">3. 현황</span>
+        <span class="text-[10px] font-bold">2. 현황</span>
         <span class="text-[8px] text-slate-400 leading-none">Явц</span>
       </button>
-      <button onclick="goToScreen(4)" id="tab-4" class="tab-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-400 transition-colors">
+      <button onclick="goToScreen(3)" id="tab-3" class="tab-btn flex flex-col items-center py-1 px-3 rounded-xl text-slate-400 transition-colors">
         <i data-lucide="book-open" class="w-5 h-5 mb-0.5"></i>
-        <span class="text-[10px] font-bold">4. 사전</span>
+        <span class="text-[10px] font-bold">3. 사전</span>
         <span class="text-[8px] text-slate-400 leading-none">Толь бичиг</span>
       </button>
     </nav>
-
-    <!-- 4. 시연 및 과제 발표용 테스트 도구 패널 (설계서 6페이지 테스트 조건 구현) -->
-    <div class="bg-slate-800 text-slate-200 border-t border-slate-700 px-3 py-2 text-xs flex items-center justify-between z-30 fixed bottom-[57px] w-full max-w-[440px]">
-      <div class="flex items-center space-x-1.5 text-[11px]">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span class="font-bold text-amber-300">시연 도구:</span>
-        <span id="test-date-badge" class="font-mono text-slate-300">2026-02-15</span>
-      </div>
-      <div class="flex space-x-1.5">
-        <button onclick="simulateNextDay()" class="bg-brand-600 hover:bg-brand-500 text-white px-2 py-1 rounded-md text-[11px] font-bold flex items-center transition-all" title="날짜를 1일 증가시켜 마감일 경과 규칙 테스트">
-          <i data-lucide="fast-forward" class="w-3 h-3 mr-1"></i>
-          다음 날 (+1일)
-        </button>
-        <button onclick="resetAllData()" class="bg-slate-700 hover:bg-rose-600 text-slate-200 hover:text-white px-2 py-1 rounded-md text-[11px] font-medium flex items-center transition-all" title="초기 상태로 리셋">
-          <i data-lucide="rotate-ccw" class="w-3 h-3 mr-1"></i>
-          초기화
-        </button>
-      </div>
-    </div>
 
   </div>
 
   <!-- JavaScript 애플리케이션 로직 -->
   <script>
     // ==========================================
-    // 1. 기초 데이터셋 정의 (한밭대 학과 링크 & 6대 용어)
+    // 1. 기초 데이터셋 정의 (6대 용어 & 4단계)
     // ==========================================
-    const DEPARTMENTS = {
-      'ce': {
-        nameKo: '컴퓨터공학과',
-        nameMn: 'Компьютерийн ухааны тэнхим',
-        url: 'https://new.hanbat.ac.kr/ce/'
-      },
-      'ice': {
-        nameKo: '정보통신공학과',
-        nameMn: 'Мэдээлэл холбооны инженерчлэл',
-        url: 'https://new.hanbat.ac.kr/ice/'
-      },
-      'aisw': {
-        nameKo: '인공지능소프트웨어학과',
-        nameMn: 'Хиймэл оюун & Программ хангамж',
-        url: 'https://new.hanbat.ac.kr/aisw/'
-      },
-      'me': {
-        nameKo: '기계공학과',
-        nameMn: 'Механик инженерчлэлийн тэнхим',
-        url: 'https://new.hanbat.ac.kr/me/'
-      },
-      'ee': {
-        nameKo: '전기공학과',
-        nameMn: 'Цахилгааны инженерчлэлийн тэнхим',
-        url: 'https://new.hanbat.ac.kr/ee/'
-      },
-      'chembio': {
-        nameKo: '화학생명공학과',
-        nameMn: 'Хими био-технологийн тэнхим',
-        url: 'https://new.hanbat.ac.kr/chembio/'
-      },
-      'biz': {
-        nameKo: '경영회계학과',
-        nameMn: 'Бизнесийн удирдлага, нягтлан бодох',
-        url: 'https://new.hanbat.ac.kr/biz/'
-      },
-      'pub': {
-        nameKo: '공공행정학과',
-        nameMn: 'Төрийн захиргааны тэнхим',
-        url: 'https://www.hanbat.ac.kr'
-      },
-      'custom': {
-        nameKo: '기타 학과 (한밭대 공식 학사공지)',
-        nameMn: 'Бусад тэнхим (Сургуулийн албан зар)',
-        url: 'https://www.hanbat.ac.kr/kor/html/sub01/010101.html'
-      }
-    };
 
     // 필수 6대 용어집
     const CORE_TERMS = [
@@ -592,14 +402,13 @@
       }
     ];
 
-    // 표준 신입생 수강신청 4단계 타임라인 템플릿
+    // 표준 신입생 수강신청 4단계 절차
     const DEFAULT_STEPS = [
       {
         id: 1,
         titleKo: '1단계: 학사일정 및 수강편람(개설강좌) 확인',
         titleMn: '1-р алхам: Хичээлийн хуваарь болон гарын авлага шалгах',
-        dueDate: '2026-02-16',
-        descKo: '한밭대 홈페이지와 학과 공지사항에서 이번 학기 개설된 과목 목록과 시간표를 확인하고 전공필수 과목을 체크하세요.',
+        descKo: '한밭대 홈페이지와 학사 공지사항에서 이번 학기 개설된 과목 목록과 시간표를 확인하고 전공필수 과목을 체크하세요.',
         descMn: 'Ханбат их сургуулийн зар болон тэнхимийн хуудаснаас нээгдсэн хичээлүүд, заавал судлах хичээлүүдийг шалгана уу.',
         completed: false,
         keyTerms: ['수강편람', '개설강좌', '전공필수']
@@ -608,7 +417,6 @@
         id: 2,
         titleKo: '2단계: 수강희망과목(장바구니) 담기',
         titleMn: '2-р алхам: Хичээлээ сагсанд хийх (Урьдчилан сонголт)',
-        dueDate: '2026-02-18',
         descKo: '통합학사시스템(my.hanbat.ac.kr)에 접속하여 원하는 강의를 장바구니에 미리 담아 정식 신청 시간을 단축하세요.',
         descMn: 'my.hanbat.ac.kr системд нэвтрэн сонирхсон хичээлүүдээ урьдчилан сагсанд хийж хадгална уу.',
         completed: false,
@@ -618,7 +426,6 @@
         id: 3,
         titleKo: '3단계: 신입생 본 수강신청 실시',
         titleMn: '3-р алхам: Шинэ оюутны үндсэн хичээл сонголт хийх',
-        dueDate: '2026-02-23',
         descKo: '정해진 수강신청 시작 시간에 장바구니 목록에서 [신청] 버튼을 눌러 성공적으로 확정짓습니다.',
         descMn: 'Товлосон цагт сагсан дахь хичээлүүдийнхээ [Бүртгүүлэх] товчийг даран амжилттай баталгаажуулна уу.',
         completed: false,
@@ -628,7 +435,6 @@
         id: 4,
         titleKo: '4단계: 신청 내역 확인 및 수강정정 기간 대비',
         titleMn: '4-р алхам: Сонголтоо шалгах ба засах хугацаанд бэлтгэх',
-        dueDate: '2026-03-06',
         descKo: '신청된 총 학점을 확인하고 변경이나 추가가 필요한 과목은 개강 첫 주 수강정정 기간을 이용하세요.',
         descMn: 'Нийт авсан кредитээ шалган, өөрчлөх шаардлагатай бол хичээл эхлэх эхний долоо хоногийн засах хугацааг ашиглана уу.',
         completed: false,
@@ -642,23 +448,24 @@
     let state = {
       currentScreen: 1,
       languageMode: 'both', // 'both' | 'mn' | 'ko'
-      currentSimDate: '2026-02-15', // 테스트 시뮬레이션 날짜
-      userConfig: {
-        term: '2026-1',
-        deptKey: 'ce',
-        customDeptName: '',
-        grade: 1
-      },
       steps: JSON.parse(JSON.stringify(DEFAULT_STEPS))
     };
 
     // 로컬스토리지 복구
     function loadState() {
-      const saved = localStorage.getItem('munsu_app_state');
+      const saved = localStorage.getItem('munsu_app_state_v2');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          state = { ...state, ...parsed };
+          if (parsed.steps && parsed.steps.length === 4) {
+            state.steps = parsed.steps;
+          }
+          if (parsed.languageMode) {
+            state.languageMode = parsed.languageMode;
+          }
+          if (parsed.currentScreen) {
+            state.currentScreen = parsed.currentScreen;
+          }
         } catch (e) {
           console.error("저장소 로드 에러", e);
         }
@@ -666,7 +473,11 @@
     }
 
     function saveState() {
-      localStorage.setItem('munsu_app_state', JSON.stringify(state));
+      localStorage.setItem('munsu_app_state_v2', JSON.stringify({
+        currentScreen: state.currentScreen,
+        languageMode: state.languageMode,
+        steps: state.steps
+      }));
     }
 
     // ==========================================
@@ -681,8 +492,9 @@
       if (target) target.classList.remove('hidden');
 
       // 하단 탭 스타일 갱신
-      for (let i = 1; i <= 4; i++) {
+      for (let i = 1; i <= 3; i++) {
         const tab = document.getElementById(`tab-${i}`);
+        if (!tab) continue;
         if (i === screenNumber) {
           tab.classList.remove('text-slate-400');
           tab.classList.add('text-brand-600');
@@ -693,9 +505,9 @@
       }
 
       // 화면별 갱신 작업 실행
-      if (screenNumber === 2) renderGuideScreen();
-      if (screenNumber === 3) renderProgressScreen();
-      if (screenNumber === 4) renderTermsScreen();
+      if (screenNumber === 1) renderGuideScreen();
+      if (screenNumber === 2) renderProgressScreen();
+      if (screenNumber === 3) renderTermsScreen();
 
       // 상단 스크롤 초기화
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -713,115 +525,44 @@
       const btnKo = document.getElementById('btn-lang-ko');
 
       [btnBoth, btnMn, btnKo].forEach(btn => {
-        btn.className = "flex-1 py-1 rounded-md text-center transition-all hover:text-slate-900";
+        if (btn) btn.className = "flex-1 py-1 rounded-md text-center transition-all hover:text-slate-900";
       });
 
       if (mode === 'ko') {
         document.body.classList.add('lang-ko');
-        btnKo.className = "flex-1 py-1 rounded-md text-center transition-all bg-white text-brand-900 shadow-sm font-bold";
+        if (btnKo) btnKo.className = "flex-1 py-1 rounded-md text-center transition-all bg-white text-brand-900 shadow-sm font-bold";
       } else if (mode === 'mn') {
         document.body.classList.add('lang-mn');
-        btnMn.className = "flex-1 py-1 rounded-md text-center transition-all bg-white text-brand-900 shadow-sm font-bold";
+        if (btnMn) btnMn.className = "flex-1 py-1 rounded-md text-center transition-all bg-white text-brand-900 shadow-sm font-bold";
       } else {
-        btnBoth.className = "flex-1 py-1 rounded-md text-center transition-all bg-white text-brand-900 shadow-sm font-bold";
+        if (btnBoth) btnBoth.className = "flex-1 py-1 rounded-md text-center transition-all bg-white text-brand-900 shadow-sm font-bold";
       }
       saveState();
     }
 
-    // 학년 선택
-    function setGrade(grade, btnElement) {
-      state.userConfig.grade = grade;
-      document.querySelectorAll('.btn-grade').forEach(btn => {
-        btn.className = "btn-grade py-2 rounded-xl text-xs font-medium border border-slate-200 bg-slate-50 text-slate-600";
-      });
-      btnElement.className = "btn-grade py-2 rounded-xl text-xs font-bold border border-brand-500 bg-brand-50 text-brand-700 shadow-sm";
-      saveState();
-    }
-
-    function handleDeptChange() {
-      const select = document.getElementById('select-dept');
-      const customInput = document.getElementById('input-custom-dept');
-      if (select.value === 'custom') {
-        customInput.classList.remove('hidden');
-      } else {
-        customInput.classList.add('hidden');
-      }
-    }
-
-    // [화면 1] 초안 만들기 버튼 클릭 시
-    function createDraft() {
-      const selectTerm = document.getElementById('select-term').value;
-      const selectDept = document.getElementById('select-dept').value;
-      const customDept = document.getElementById('input-custom-dept').value;
-
-      state.userConfig.term = selectTerm;
-      state.userConfig.deptKey = selectDept;
-      state.userConfig.customDeptName = customDept;
-
-      // 화면 2로 이동
-      goToScreen(2);
-    }
-
     // ==========================================
-    // 4. 화면별 렌더링 및 비즈니스 로직 (판단 규칙)
+    // 4. 화면별 렌더링 및 비즈니스 로직
     // ==========================================
 
-    // [화면 2] 가이드 & 체크리스트 렌더링
+    // [화면 1] 가이드 & 체크리스트 렌더링
     function renderGuideScreen() {
-      const deptKey = state.userConfig.deptKey;
-      const deptInfo = DEPARTMENTS[deptKey] || DEPARTMENTS['ce'];
-      const deptDisplayName = deptKey === 'custom' && state.userConfig.customDeptName ? state.userConfig.customDeptName : deptInfo.nameKo;
-
-      // 학과 배지 및 링크 업데이트
-      document.getElementById('guide-dept-badge').textContent = deptDisplayName;
-      const linkBtn = document.getElementById('btn-dept-link');
-      linkBtn.href = deptInfo.url;
-
-      // 판단 규칙 ①: 학과 링크 유무에 따른 안내 텍스트
-      if (!deptInfo.url || deptKey === 'custom') {
-        linkBtn.innerHTML = `<i data-lucide="info" class="w-3.5 h-3.5 mr-1.5 text-amber-500"></i><span class="text-ko">한밭대 공식 학사공지 바로가기</span>`;
-      } else {
-        linkBtn.innerHTML = `<i data-lucide="external-link" class="w-3.5 h-3.5 mr-1.5 text-brand-600"></i><span class="text-ko">${deptDisplayName} 공지 원문 열기</span><span class="text-mn ml-1">/ Албан зар</span>`;
-      }
-
-      // 판단 규칙 ④: 재조율 정렬 (마감일 지난 미완료 단계 우선 배치)
-      const sortedSteps = [...state.steps].sort((a, b) => {
-        const aOverdue = (!a.completed && a.dueDate < state.currentSimDate) ? 1 : 0;
-        const bOverdue = (!b.completed && b.dueDate < state.currentSimDate) ? 1 : 0;
-        return bOverdue - aOverdue; // 마감 지난 것이 앞으로
-      });
-
       const container = document.getElementById('steps-container');
       container.innerHTML = '';
 
-      sortedSteps.forEach(step => {
-        const isOverdue = !step.completed && (step.dueDate < state.currentSimDate);
+      state.steps.forEach(step => {
         const card = document.createElement('div');
         
         // 카드 스타일
         card.className = `p-4 rounded-2xl border transition-all ${
           step.completed 
             ? 'bg-slate-50 border-slate-200 opacity-80' 
-            : isOverdue 
-              ? 'bg-rose-50/80 border-rose-300 shadow-sm' 
-              : 'bg-white border-slate-200/90 shadow-sm hover:border-brand-300'
+            : 'bg-white border-slate-200/90 shadow-sm hover:border-brand-300'
         }`;
 
         card.innerHTML = `
           <div class="flex items-start justify-between">
             <div class="flex-1 pr-3">
-              <div class="flex items-center space-x-1.5 mb-1">
-                ${isOverdue ? `
-                  <span class="text-[10px] font-extrabold bg-rose-600 text-white px-2 py-0.5 rounded-full flex items-center animate-pulse">
-                    <i data-lucide="alert-circle" class="w-3 h-3 mr-0.5"></i> 마감 경과 / Хугацаа хэтэрсэн
-                  </span>
-                ` : ''}
-                <span class="text-[11px] font-medium text-slate-500 flex items-center">
-                  <i data-lucide="clock" class="w-3 h-3 mr-1 text-slate-400"></i>
-                  예정일: ${step.dueDate}
-                </span>
-              </div>
-              <h4 class="text-sm font-bold ${step.completed ? 'line-through text-slate-400' : isOverdue ? 'text-rose-950' : 'text-slate-900'}">
+              <h4 class="text-sm font-bold ${step.completed ? 'line-through text-slate-400' : 'text-slate-900'}">
                 <span class="text-ko">${step.titleKo}</span>
                 <span class="text-mn block text-xs font-medium text-slate-600 mt-0.5">${step.titleMn}</span>
               </h4>
@@ -844,9 +585,7 @@
             <button onclick="toggleStep(${step.id})" class="mt-1 flex-shrink-0 w-8 h-8 rounded-xl border flex items-center justify-center transition-all ${
               step.completed 
                 ? 'bg-emerald-500 border-emerald-500 text-white shadow-sm' 
-                : isOverdue
-                  ? 'border-rose-400 text-rose-500 hover:bg-rose-100'
-                  : 'border-slate-300 text-slate-300 hover:border-brand-500 hover:text-brand-500'
+                : 'border-slate-300 text-slate-300 hover:border-brand-500 hover:text-brand-500'
             }">
               <i data-lucide="check" class="w-5 h-5 stroke-[2.5]"></i>
             </button>
@@ -871,7 +610,7 @@
       }
     }
 
-    // [화면 3] 진행 상황 모니터링 & 재조율 규칙
+    // [화면 2] 진행 상황 모니터링 & 현황
     function renderProgressScreen() {
       const completedCount = state.steps.filter(s => s.completed).length;
       const totalCount = state.steps.length;
@@ -883,16 +622,7 @@
       document.getElementById('stat-completed-count').textContent = completedCount;
       document.getElementById('stat-remaining-count').textContent = remainingCount;
 
-      // 판단 규칙 ③: 마감 지난 미완료 단계 감지 및 경고 배너 표출
-      const hasOverdue = state.steps.some(s => !s.completed && s.dueDate < state.currentSimDate);
-      const banner = document.getElementById('reschedule-banner');
-      if (hasOverdue) {
-        banner.classList.remove('hidden');
-      } else {
-        banner.classList.add('hidden');
-      }
-
-      // 판단 규칙 ②: 완료 항목이 0개일 때 첫 번째 단계 강조 안내
+      // 다음 할 일 안내
       const nextContainer = document.getElementById('next-action-container');
       const firstUncompleted = state.steps.find(s => !s.completed);
 
@@ -910,9 +640,8 @@
           <div class="p-4 rounded-xl border ${isPulse ? 'bg-blue-50/70 border-brand-300 pulse-card' : 'bg-slate-50 border-slate-200'}">
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold uppercase tracking-wider text-brand-700 bg-brand-100 px-2 py-0.5 rounded">
-                ${isPulse ? '규칙 ② 첫 단계 집중 권장' : '우선 할 일 / Дараагийн ажил'}
+                ${isPulse ? '첫 단계 집중 권장' : '우선 할 일 / Дараагийн ажил'}
               </span>
-              <span class="text-[11px] font-semibold text-slate-500">마감: ${firstUncompleted.dueDate}</span>
             </div>
             <h5 class="text-sm font-bold text-slate-900 mt-1">
               <span class="text-ko">${firstUncompleted.titleKo}</span>
@@ -933,7 +662,7 @@
       lucide.createIcons();
     }
 
-    // [화면 4] 필수 6대 용어 사전 렌더링
+    // [화면 3] 필수 6대 용어 사전 렌더링
     function renderTermsScreen(highlightKeyword = null) {
       const container = document.getElementById('terms-container');
       container.innerHTML = '';
@@ -983,92 +712,27 @@
     }
 
     function goToTermsWithKeyword(keyword) {
-      goToScreen(4);
+      goToScreen(3);
       renderTermsScreen(keyword);
     }
 
     // ==========================================
-    // 5. 시연 및 과제 발표용 테스트 도구 함수들
+    // 5. 초기화 함수
     // ==========================================
-    function simulateNextDay() {
-      const currentDate = new Date(state.currentSimDate);
-      currentDate.setDate(currentDate.getDate() + 1);
-      
-      const yyyy = currentDate.getFullYear();
-      const mm = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const dd = String(currentDate.getDate()).padStart(2, '0');
-      state.currentSimDate = `${yyyy}-${mm}-${dd}`;
-
-      updateDateLabels();
-      saveState();
-
-      // 현재 화면 리렌더링
-      if (state.currentScreen === 2) renderGuideScreen();
-      if (state.currentScreen === 3) renderProgressScreen();
-    }
-
-    function updateDateLabels() {
-      const label = state.currentSimDate.replace(/-/g, '.');
-      document.getElementById('currentSimDateLabel').textContent = label;
-      document.getElementById('test-date-badge').textContent = state.currentSimDate;
-    }
-
-    // 초기 설정 폼에 저장된 상태 동기화
-    function hydrateSetupForm() {
-      if (state.userConfig) {
-        const termSelect = document.getElementById('select-term');
-        const deptSelect = document.getElementById('select-dept');
-        const customDeptInput = document.getElementById('input-custom-dept');
-
-        if (termSelect && state.userConfig.term) {
-          termSelect.value = state.userConfig.term;
-        }
-        if (deptSelect && state.userConfig.deptKey) {
-          deptSelect.value = state.userConfig.deptKey;
-        }
-        if (customDeptInput && state.userConfig.customDeptName) {
-          customDeptInput.value = state.userConfig.customDeptName;
-        }
-        handleDeptChange();
-
-        // 학년 버튼 상태 복원
-        const targetGrade = state.userConfig.grade || 1;
-        document.querySelectorAll('.btn-grade').forEach((btn, idx) => {
-          if (idx + 1 === targetGrade) {
-            btn.className = "btn-grade py-2 rounded-xl text-xs font-bold border border-brand-500 bg-brand-50 text-brand-700 shadow-sm";
-          } else {
-            btn.className = "btn-grade py-2 rounded-xl text-xs font-medium border border-slate-200 bg-slate-50 text-slate-600";
-          }
-        });
-      }
-    }
-
     function resetAllData() {
-      if (confirm('모든 수강신청 체크 상태와 설정을 초기화할까요?')) {
-        localStorage.removeItem('munsu_app_state');
+      if (confirm('모든 수강신청 체크 상태를 초기화할까요? / Сонголтын тэмдэглэгээг шинэчлэх үү?')) {
+        localStorage.removeItem('munsu_app_state_v2');
         state.currentScreen = 1;
-        state.currentSimDate = '2026-02-15';
-        state.languageMode = 'both';
         state.steps = JSON.parse(JSON.stringify(DEFAULT_STEPS));
-        state.userConfig = {
-          term: '2026-1',
-          deptKey: 'ce',
-          customDeptName: '',
-          grade: 1
-        };
-        updateDateLabels();
-        setLanguageMode('both');
-        hydrateSetupForm();
+        saveState();
         goToScreen(1);
       }
     }
 
-    // 초기화 실행
+    // 앱 시작 시 실행
     window.addEventListener('DOMContentLoaded', () => {
       loadState();
-      updateDateLabels();
-      setLanguageMode(state.languageMode);
-      hydrateSetupForm();
+      setLanguageMode(state.languageMode || 'both');
       goToScreen(state.currentScreen || 1);
     });
   </script>
