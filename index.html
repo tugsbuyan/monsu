@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>munsu - 한밭대학교 신입 몽골 유학생 수강신청 가이드</title>
+  <title>monsu - 한밭대학교 신입 몽골 유학생 수강신청 가이드</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
@@ -86,7 +86,7 @@
             M
           </div>
           <div>
-            <h1 class="text-base font-bold text-brand-900 leading-none">munsu</h1>
+            <h1 class="text-base font-bold text-brand-900 leading-none">monsu</h1>
             <p class="text-[10px] text-slate-500 font-medium">한밭대 수강신청 가이드</p>
           </div>
         </div>
@@ -112,7 +112,7 @@
       </div>
     </header>
 
-    <!-- 2. 메인 컨텐츠 영역 (화면 1~3 전환) -->
+    <!-- 2. 메인 컨텐츠 영역 (화면 1~4 전환) -->
     <main class="flex-1 p-4 pb-20 custom-scroll overflow-y-auto">
 
       <!-- ============================================== -->
@@ -124,7 +124,7 @@
         <div class="bg-gradient-to-br from-brand-900 to-brand-700 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
           <div class="relative z-10">
             <span class="inline-block bg-white/20 text-white text-[11px] font-medium px-2 py-0.5 rounded-full mb-2">
-              한밭대학교 국립대 · 몽골 유학생 가이드
+              한밭대학교 국립대 · 몽골 유학생 가이드 (monsu)
             </span>
             <h2 class="text-xl font-bold mb-1">
               <span class="text-ko">신입 몽골 유학생 수강신청 가이드</span>
@@ -136,6 +136,27 @@
             </p>
           </div>
           <div class="absolute -right-4 -bottom-4 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+        </div>
+
+        <!-- 학과별 교육과정 바로가기 배너 (NEW) -->
+        <div class="bg-gradient-to-r from-indigo-700 to-brand-700 text-white p-4 rounded-2xl shadow-sm cursor-pointer hover:opacity-95 transition-all" onclick="goToScreen(2)">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-200 bg-white/10 px-2 py-0.5 rounded">
+                  주요 기능 / Гол боломж
+                </span>
+                <h3 class="text-sm font-bold mt-0.5">
+                  <span class="text-ko">전공별 교육과정(이수체계) 확인하기</span>
+                  <span class="text-mn block text-xs font-normal text-indigo-100">Мэргэжил бүрийн сургалтын хөтөлбөр шалгах</span>
+                </h3>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-5 h-5 text-indigo-200"></i>
+          </div>
         </div>
 
         <!-- 한밭대학교 공식 출처 연동 카드 -->
@@ -193,8 +214,8 @@
 
         <!-- 하단 액션 버튼 -->
         <div class="pt-2">
-          <button onclick="goToScreen(2)" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 active:scale-[0.99]">
-            <span class="text-ko text-sm">완료 체크 및 현황보기 (2번 화면으로)</span>
+          <button onclick="goToScreen(3)" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 active:scale-[0.99]">
+            <span class="text-ko text-sm">진행 현황 보기 (3번 화면으로)</span>
             <span class="text-mn text-xs opacity-90">/ Явц шалгах →</span>
             <i data-lucide="trending-up" class="w-4 h-4 ml-1"></i>
           </button>
@@ -203,9 +224,83 @@
 
 
       <!-- ============================================== -->
-      <!-- [화면 2] 진행 상황 모니터링 & 현황 (Progress Screen) -->
+      <!-- [화면 2] 학과별 교육과정 조회 (Curriculum Screen) -->
       <!-- ============================================== -->
       <section id="screen-2" class="screen-view hidden space-y-4">
+        
+        <!-- 인트로 카드 -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="flex items-center space-x-2 mb-1">
+            <div class="p-1.5 bg-brand-100 text-brand-700 rounded-lg">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+            </div>
+            <h3 class="text-sm font-bold text-slate-800">
+              <span class="text-ko">학과별 교육과정(이수체계) 조회</span>
+              <span class="text-mn block text-xs text-slate-500 font-normal">Мэргэжил бүрийн сургалтын төлөвлөгөө</span>
+            </h3>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            <span class="text-ko">본인 학과를 선택하여 1학년 필수 수강과목, 졸업 요구학점, 공식 교육과정표를 확인하세요.</span>
+            <span class="text-mn block">Өөрийн мэргэжлийг сонгон 1-р дамжаанд заавал үзэх хичээл болон албан ёсны сургалтын төлөвлөгөөг шалгаарай.</span>
+          </p>
+        </div>
+
+        <!-- 단과대 / 전공 선택 필터 -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">
+              <span class="text-ko">단과대학 필터</span>
+              <span class="text-mn text-slate-500"> / Коллеж сонгох</span>
+            </label>
+            <select id="curriculum-college-select" onchange="filterCurriculumByCollege()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <option value="all">전체 단과대학 (Бүх коллеж)</option>
+              <option value="정보기술대학">정보기술대학 (Мэдээллийн технологи)</option>
+              <option value="공과대학">공과대학 (Инженерийн коллеж)</option>
+              <option value="경상대학">경상대학 (Бизнесийн коллеж)</option>
+              <option value="인문사회대학">인문사회대학 (Хүмүүнлэг, нийгэм)</option>
+              <option value="디자인대학">디자인대학 (Дизайны коллеж)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">
+              <span class="text-ko">소속 학과(전공) 선택</span>
+              <span class="text-mn text-slate-500"> / Мэргэжил сонгох</span>
+            </label>
+            <select id="curriculum-dept-select" onchange="displayCurriculumDetail()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <!-- JS 동적 생성 -->
+            </select>
+          </div>
+        </div>
+
+        <!-- 선택된 학과 교육과정 상세 카드 -->
+        <div id="curriculum-detail-container" class="space-y-3">
+          <!-- JS에서 동적 렌더링 -->
+        </div>
+
+        <!-- 한밭대학교 통합 교육과정 포털 안내 카드 -->
+        <div class="bg-slate-100 p-4 rounded-2xl border border-slate-200 space-y-2.5 text-xs">
+          <div class="flex items-center space-x-2 text-slate-700">
+            <i data-lucide="file-text" class="w-4 h-4 text-brand-600"></i>
+            <h4 class="font-bold">한밭대학교 통합 교육과정편람(요람) 다운로드</h4>
+          </div>
+          <p class="text-slate-600 text-[11px] leading-relaxed">
+            <span class="text-ko">전체 학과의 상세 교육과정표 및 교과목 개요(수업 계획)는 국립한밭대학교 대표 홈페이지 교육과정 통합 포털에서 PDF로 열람하실 수 있습니다.</span>
+            <span class="text-mn block mt-0.5">Бүх тэнхимийн сургалтын бүтэн төлөвлөгөөг Ханбат их сургуулийн төв хуудаснаас PDF хэлбэрээр татан авах боломжтой.</span>
+          </p>
+          <a href="https://www.hanbat.ac.kr/kor/html/sub05/05020101.html" target="_blank" rel="noopener noreferrer" class="w-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold py-2 px-3 rounded-xl flex items-center justify-center transition-all shadow-sm">
+            <i data-lucide="download" class="w-3.5 h-3.5 mr-1.5 text-brand-600"></i>
+            <span>한밭대 교육과정편람(요람) 바로가기</span>
+          </a>
+        </div>
+
+      </section>
+
+
+      <!-- ============================================== -->
+      <!-- [화면 3] 진행 상황 모니터링 & 현황 (Progress Screen) -->
+      <!-- ============================================== -->
+      <section id="screen-3" class="screen-view hidden space-y-4">
 
         <!-- 진행 통계 요약 카드 -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
@@ -271,9 +366,9 @@
 
 
       <!-- ============================================== -->
-      <!-- [화면 3] 도움말 & 필수 6대 용어 사전 (Help Screen) -->
+      <!-- [화면 4] 도움말 & 필수 6대 용어 사전 (Help Screen) -->
       <!-- ============================================== -->
-      <section id="screen-3" class="screen-view hidden space-y-4">
+      <section id="screen-4" class="screen-view hidden space-y-4">
         
         <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="flex items-center space-x-2 mb-1">
@@ -329,21 +424,26 @@
 
     </main>
 
-    <!-- 3. 하단 네비게이션 탭 바 (3개 화면) -->
-    <nav class="fixed bottom-0 w-full max-w-[440px] bg-white border-t border-slate-200 px-3 py-2 flex justify-around items-center z-40 shadow-lg">
-      <button onclick="goToScreen(1)" id="tab-1" class="tab-btn flex flex-col items-center py-1 px-3 rounded-xl text-brand-600 transition-colors">
+    <!-- 3. 하단 네비게이션 탭 바 (4개 화면) -->
+    <nav class="fixed bottom-0 w-full max-w-[440px] bg-white border-t border-slate-200 px-2 py-2 flex justify-around items-center z-40 shadow-lg">
+      <button onclick="goToScreen(1)" id="tab-1" class="tab-btn flex flex-col items-center py-1 px-2 rounded-xl text-brand-600 transition-colors">
         <i data-lucide="list-checks" class="w-5 h-5 mb-0.5"></i>
         <span class="text-[10px] font-bold">1. 가이드</span>
         <span class="text-[8px] text-slate-400 leading-none">Заавар</span>
       </button>
-      <button onclick="goToScreen(2)" id="tab-2" class="tab-btn flex flex-col items-center py-1 px-3 rounded-xl text-slate-400 transition-colors">
+      <button onclick="goToScreen(2)" id="tab-2" class="tab-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-400 transition-colors">
+        <i data-lucide="graduation-cap" class="w-5 h-5 mb-0.5"></i>
+        <span class="text-[10px] font-bold">2. 교육과정</span>
+        <span class="text-[8px] text-slate-400 leading-none">Хөтөлбөр</span>
+      </button>
+      <button onclick="goToScreen(3)" id="tab-3" class="tab-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-400 transition-colors">
         <i data-lucide="pie-chart" class="w-5 h-5 mb-0.5"></i>
-        <span class="text-[10px] font-bold">2. 현황</span>
+        <span class="text-[10px] font-bold">3. 현황</span>
         <span class="text-[8px] text-slate-400 leading-none">Явц</span>
       </button>
-      <button onclick="goToScreen(3)" id="tab-3" class="tab-btn flex flex-col items-center py-1 px-3 rounded-xl text-slate-400 transition-colors">
+      <button onclick="goToScreen(4)" id="tab-4" class="tab-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-400 transition-colors">
         <i data-lucide="book-open" class="w-5 h-5 mb-0.5"></i>
-        <span class="text-[10px] font-bold">3. 사전</span>
+        <span class="text-[10px] font-bold">4. 사전</span>
         <span class="text-[8px] text-slate-400 leading-none">Толь бичиг</span>
       </button>
     </nav>
@@ -353,8 +453,222 @@
   <!-- JavaScript 애플리케이션 로직 -->
   <script>
     // ==========================================
-    // 1. 기초 데이터셋 정의 (6대 용어 & 4단계)
+    // 1. 기초 데이터셋 정의 (6대 용어, 4단계 & 학과별 교육과정)
     // ==========================================
+
+    // 학과별 교육과정 데이터베이스
+    const DEPARTMENTS_CURRICULUM = [
+      {
+        id: 'ce',
+        collegeKo: '정보기술대학',
+        collegeMn: 'Мэдээллийн технологи',
+        nameKo: '컴퓨터공학과',
+        nameMn: 'Компьютерийн ухааны тэнхим',
+        url: 'https://new.hanbat.ac.kr/ce/',
+        curriculumUrl: 'https://new.hanbat.ac.kr/ce/html/sub03/030101.html',
+        gradCredits: '총 130학점 (전공 70학점 이상 / 전필 18학점 필수)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 70+ / Мэргэжлийн заавал 18+)',
+        year1SubjectsKo: 'C프로그래밍, 컴퓨터개론, 컴퓨팅사고와인공지능, 이산수학, 대학수학',
+        year1SubjectsMn: 'C програмчлал, Компьютерийн үндэс, Хиймэл оюун ба тооцоолол, Дискрет математик, Их сургуулийн математик',
+        tipKo: '1학년 때는 C프로그래밍과 기초 수학 과목을 필수로 이수해야 2학년 자료구조/알고리즘 수강이 원활합니다.',
+        tipMn: '1-р дамжаанд C програмчлал болон суурь математикийн хичээлийг заавал үзэж байж 2-р курсийн Өгөгдлийн бүтэц, Алгоритм хичээлийг амжилттай судална.'
+      },
+      {
+        id: 'aisw',
+        collegeKo: '정보기술대학',
+        collegeMn: 'Мэдээллийн технологи',
+        nameKo: '인공지능소프트웨어학과',
+        nameMn: 'Хиймэл оюун & Программ хангамж',
+        url: 'https://new.hanbat.ac.kr/aisw/',
+        curriculumUrl: 'https://new.hanbat.ac.kr/aisw/html/sub03/030101.html',
+        gradCredits: '총 130학점 (전공 72학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 72+)',
+        year1SubjectsKo: '파이썬프로그래밍, AI기초, 컴퓨터시스템개론, 프로그래밍수학',
+        year1SubjectsMn: 'Python програмчлал, Хиймэл оюуны үндэс, Компьютерийн систем, Програмчлалын математик',
+        tipKo: '파이썬 기초와 선형대수/통계 기초 과목을 1학년 1, 2학기에 탄탄히 수강하세요.',
+        tipMn: 'Python суурь болон шугаман алгебр, статистикийн хичээлийг 1-р дамжаандаа заавал үзээрэй.'
+      },
+      {
+        id: 'ice',
+        collegeKo: '정보기술대학',
+        collegeMn: 'Мэдээллийн технологи',
+        nameKo: '정보통신공학과',
+        nameMn: 'Мэдээлэл холбооны инженерчлэл',
+        url: 'https://new.hanbat.ac.kr/ice/',
+        curriculumUrl: 'https://new.hanbat.ac.kr/ice/html/sub03/030101.html',
+        gradCredits: '총 130학점 (전공 70학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 70+)',
+        year1SubjectsKo: '정보통신개론, 기초C프로그래밍, 일반물리학및실험',
+        year1SubjectsMn: 'Мэдээлэл холбооны удиртгал, C програмчлал, Физик ба лаборатори',
+        tipKo: '물리학과 C프로그래밍 기초를 우선 이수하세요.',
+        tipMn: 'Физик болон C програмчлалын суурь хичээлийг түрүүлж сонгон судална уу.'
+      },
+      {
+        id: 'me',
+        collegeKo: '공과대학',
+        collegeMn: 'Инженерийн коллеж',
+        nameKo: '기계공학과',
+        nameMn: 'Механик инженерчлэлийн тэнхим',
+        url: 'https://new.hanbat.ac.kr/me/',
+        curriculumUrl: 'https://new.hanbat.ac.kr/me/html/sub03/030101.html',
+        gradCredits: '총 135학점 (전공 75학점 이상)',
+        gradCreditsMn: 'Нийт 135 кредит (Мэргэжил 75+)',
+        year1SubjectsKo: '일반물리학, 미적분학, 기계공학개론, 공학설계입문',
+        year1SubjectsMn: 'Ерөнхий физик, Математик анализ, Механикийн удиртгал, Инженерийн зураг зүй',
+        tipKo: '4대 역학의 기초가 되는 미적분학과 일반물리학을 1학년 때 반드시 합격해야 합니다.',
+        tipMn: 'Механикийн 4 гол онолын суурь болох Математик анализ ба Физикийн хичээлийг 1-р дамжаанд заавал амжилттай судална.'
+      },
+      {
+        id: 'ee',
+        collegeKo: '공과대학',
+        collegeMn: 'Инженерийн коллеж',
+        nameKo: '전기공학과',
+        nameMn: 'Цахилгааны инженерчлэлийн тэнхим',
+        url: 'https://new.hanbat.ac.kr/ee/',
+        curriculumUrl: 'https://new.hanbat.ac.kr/ee/html/sub03/030101.html',
+        gradCredits: '총 135학점 (전공 72학점 이상)',
+        gradCreditsMn: 'Нийт 135 кредит (Мэргэжил 72+)',
+        year1SubjectsKo: '전기공학개론, 공업수학기초, 일반물리학, 전기기초실험',
+        year1SubjectsMn: 'Цахилгааны үндэс, Инженерийн математик, Ерөнхий физик, Цахилгааны лаборатори',
+        tipKo: '회로이론의 선수과목인 일반물리학과 공업수학을 철저히 준비하세요.',
+        tipMn: 'Хэлхээний онолын суурь болох Физик ба Инженерийн математикийг сайтар үзэх хэрэгтэй.'
+      },
+      {
+        id: 'electronics',
+        collegeKo: '공과대학',
+        collegeMn: 'Инженерийн коллеж',
+        nameKo: '전자공학과',
+        nameMn: 'Электроник инженерийн тэнхим',
+        url: 'https://www.hanbat.ac.kr',
+        curriculumUrl: 'https://www.hanbat.ac.kr/kor/html/sub05/05020101.html',
+        gradCredits: '총 130학점 (전공 72학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 72+)',
+        year1SubjectsKo: '전자공학입문, 기초프로그래밍, 대학물리학',
+        year1SubjectsMn: 'Электроникийн удиртгал, Суурь програмчлал, Их сургуулийн физик',
+        tipKo: '기초 전자회로 및 프로그래밍 기초를 1학년 때 이수하세요.',
+        tipMn: 'Суурь электроникийн хэлхээ болон програмчлалын хичээлийг 1-р курстээ сонгоорой.'
+      },
+      {
+        id: 'chembio',
+        collegeKo: '공과대학',
+        collegeMn: 'Инженерийн коллеж',
+        nameKo: '화학생명공학과',
+        nameMn: 'Хими, биологийн инженерчлэл',
+        url: 'https://new.hanbat.ac.kr/chembio/',
+        curriculumUrl: 'https://new.hanbat.ac.kr/chembio/html/sub03/030101.html',
+        gradCredits: '총 130학점 (전공 70학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 70+)',
+        year1SubjectsKo: '일반화학및실험, 일반생물학, 기초유기화학',
+        year1SubjectsMn: 'Ерөнхий хими ба лаборатори, Ерөнхий биологи, Суурь органик хими',
+        tipKo: '화학과 생물 실험 과목은 결석하지 않고 과제 보고서를 성실히 제출하는 것이 핵심입니다.',
+        tipMn: 'Хими, биологийн лаборатори хичээлийн тайланг цаг тухайд нь өгөх нь дүнг амжилттай авахад чухал.'
+      },
+      {
+        id: 'materials',
+        collegeKo: '공과대학',
+        collegeMn: 'Инженерийн коллеж',
+        nameKo: '신소재공학과',
+        nameMn: 'Шинэ материалын инженерчлэл',
+        url: 'https://www.hanbat.ac.kr',
+        curriculumUrl: 'https://www.hanbat.ac.kr/kor/html/sub05/05020101.html',
+        gradCredits: '총 130학점 (전공 70학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 70+)',
+        year1SubjectsKo: '신소재공학개론, 일반화학, 대학물리학',
+        year1SubjectsMn: 'Шинэ материалын удиртгал, Ерөнхий хими, Их сургуулийн физик',
+        tipKo: '물리와 화학 기초 과목을 선이수해야 2학년 결정학/열역학 수강이 가능합니다.',
+        tipMn: 'Физик, химийн суурь хичээлийг амжилттай судалж 2-р дамжааны термодинамик зэрэг хичээлд бэлтгэнэ.'
+      },
+      {
+        id: 'civil',
+        collegeKo: '공과대학',
+        collegeMn: 'Инженерийн коллеж',
+        nameKo: '건설환경공학과',
+        nameMn: 'Барилга, хүрээлэн буй орчны тэнхим',
+        url: 'https://www.hanbat.ac.kr',
+        curriculumUrl: 'https://www.hanbat.ac.kr/kor/html/sub05/05020101.html',
+        gradCredits: '총 130학점 (전공 70학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 70+)',
+        year1SubjectsKo: '건설공학개론, 응용역학기초, 미적분학',
+        year1SubjectsMn: 'Барилгын инженерийн үндэс, Хэрэглээний механикийн суурь, Математик анализ',
+        tipKo: '응용역학의 기초가 되는 대학 수학과 물리를 우선 확인하세요.',
+        tipMn: 'Хэрэглээний механикийн суурь болох Математик ба Физикийн хичээлийг түрүүлж сонгоорой.'
+      },
+      {
+        id: 'biz',
+        collegeKo: '경상대학',
+        collegeMn: 'Бизнесийн коллеж',
+        nameKo: '경영회계학과',
+        nameMn: 'Бизнесийн удирдлага, нягтлан бодох',
+        url: 'https://new.hanbat.ac.kr/biz/',
+        curriculumUrl: 'https://new.hanbat.ac.kr/biz/html/sub03/030101.html',
+        gradCredits: '총 130학점 (전공 66학점 이상 / 전필 12학점)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 66+ / Мэргэжлийн заавал 12+)',
+        year1SubjectsKo: '경영학원론, 회계원리, 경제학원론, 비즈니스통계학',
+        year1SubjectsMn: 'Бизнесийн үндэс, Нягтлан бодох бүртгэлийн үндэс, Эдийн засгийн үндэс, Бизнес статистик',
+        tipKo: '경영학원론과 회계원리는 전공필수이므로 1학년 1학기, 2학기에 꼭 나누어 수강하세요.',
+        tipMn: 'Бизнесийн удиртгал болон Нягтлан бодох бүртгэлийн үндэс нь заавал хичээл тул 1-р дамжаандаа заавал авна уу.'
+      },
+      {
+        id: 'econ',
+        collegeKo: '경상대학',
+        collegeMn: 'Бизнесийн коллеж',
+        nameKo: '경제학과',
+        nameMn: 'Эдийн засгийн тэнхим',
+        url: 'https://www.hanbat.ac.kr',
+        curriculumUrl: 'https://www.hanbat.ac.kr/kor/html/sub05/05020101.html',
+        gradCredits: '총 130학점 (전공 66학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 66+)',
+        year1SubjectsKo: '경제학원론I·II, 경제수학, 통계학입문',
+        year1SubjectsMn: 'Эдийн засгийн үндэс 1, 2, Эдийн засгийн математик, Статистик',
+        tipKo: '미시·거시경제학의 기초가 되는 경제학원론을 1학년에 먼저 이수하세요.',
+        tipMn: 'Бичил болон макро эдийн засгийн үндэс болох Эдийн засгийн үндсийг 1-р курстээ заавал үзнэ.'
+      },
+      {
+        id: 'pub',
+        collegeKo: '인문사회대학',
+        collegeMn: 'Хүмүүнлэг, нийгэм',
+        nameKo: '공공행정학과',
+        nameMn: 'Төрийн захиргааны тэнхим',
+        url: 'https://www.hanbat.ac.kr',
+        curriculumUrl: 'https://www.hanbat.ac.kr/kor/html/sub05/05020101.html',
+        gradCredits: '총 130학점 (전공 66학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 66+)',
+        year1SubjectsKo: '행정학개론, 정책학개론, 헌법기초, 사회과학방법론',
+        year1SubjectsMn: 'Төрийн удирдлагын үндэс, Бодлого судлалын удиртгал, Үндсэн хуулийн суурь, Нийгмийн шинжлэх ухааны арга зүй',
+        tipKo: '한국 행정 및 법률 용어가 많이 등장하므로 한국어 어휘 공부와 병행하는 것을 추천합니다.',
+        tipMn: 'Солонгосын захиргааны болон хуулийн нэр томьёо их гардаг тул Солонгос хэлний үгийн сангаа сайн бэлдээрэй.'
+      },
+      {
+        id: 'english',
+        collegeKo: '인문사회대학',
+        collegeMn: 'Хүмүүнлэг, нийгэм',
+        nameKo: '영어영문학과',
+        nameMn: 'Англи хэл, уран зохиолын тэнхим',
+        url: 'https://www.hanbat.ac.kr',
+        curriculumUrl: 'https://www.hanbat.ac.kr/kor/html/sub05/05020101.html',
+        gradCredits: '총 130학점 (전공 66학점 이상)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 66+)',
+        year1SubjectsKo: '기초영어회화, 영문법개론, 실용영작문, 영어독해기초',
+        year1SubjectsMn: 'Англи ярианы үндэс, Дүрмийн удиртгал, Хэрэглээний эсээ бичлэг, Уншлагын суурь',
+        tipKo: '원어민 교수님 회화 수업과 영문법 기초를 1학년 때 충실히 다지세요.',
+        tipMn: 'Мэргэжлийн багшийн яриа болон дүрмийн хичээлийг 1-р дамжаандаа сайн судална.'
+      },
+      {
+        id: 'design',
+        collegeKo: '디자인대학',
+        collegeMn: 'Дизайны коллеж',
+        nameKo: '시각·산업디자인학과',
+        nameMn: 'График ба Үйлдвэрлэлийн дизайн',
+        url: 'https://www.hanbat.ac.kr',
+        curriculumUrl: 'https://www.hanbat.ac.kr/kor/html/sub05/05020101.html',
+        gradCredits: '총 130학점 (전공 70학점 이상 / 졸업작품 필수)',
+        gradCreditsMn: 'Нийт 130 кредит (Мэргэжил 70+ / Төгсөлтийн бүтээл)',
+        year1SubjectsKo: '기초조형, 디자인사, 컴퓨터그래픽스기초, 드로잉',
+        year1SubjectsMn: 'Суурь зохиомж, Дизайны түүх, Компьютер графикийн суурь, Зураг зурах арга барил',
+        tipKo: '기초 드로잉과 조형 실습 과목은 실기실 이용 수칙을 미리 숙지하세요.',
+        tipMn: 'Зураг зурах, зохиомжийн практик хичээлүүдэд урлангийн дүрэм журамтай танилцаарай.'
+      }
+    ];
 
     // 필수 6대 용어집
     const CORE_TERMS = [
@@ -448,12 +762,13 @@
     let state = {
       currentScreen: 1,
       languageMode: 'both', // 'both' | 'mn' | 'ko'
+      selectedDeptId: 'ce', // 교육과정 화면 기본 선택 학과
       steps: JSON.parse(JSON.stringify(DEFAULT_STEPS))
     };
 
     // 로컬스토리지 복구
     function loadState() {
-      const saved = localStorage.getItem('munsu_app_state_v2');
+      const saved = localStorage.getItem('monsu_app_state_v3');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -466,6 +781,9 @@
           if (parsed.currentScreen) {
             state.currentScreen = parsed.currentScreen;
           }
+          if (parsed.selectedDeptId) {
+            state.selectedDeptId = parsed.selectedDeptId;
+          }
         } catch (e) {
           console.error("저장소 로드 에러", e);
         }
@@ -473,9 +791,10 @@
     }
 
     function saveState() {
-      localStorage.setItem('munsu_app_state_v2', JSON.stringify({
+      localStorage.setItem('monsu_app_state_v3', JSON.stringify({
         currentScreen: state.currentScreen,
         languageMode: state.languageMode,
+        selectedDeptId: state.selectedDeptId,
         steps: state.steps
       }));
     }
@@ -492,7 +811,7 @@
       if (target) target.classList.remove('hidden');
 
       // 하단 탭 스타일 갱신
-      for (let i = 1; i <= 3; i++) {
+      for (let i = 1; i <= 4; i++) {
         const tab = document.getElementById(`tab-${i}`);
         if (!tab) continue;
         if (i === screenNumber) {
@@ -506,8 +825,9 @@
 
       // 화면별 갱신 작업 실행
       if (screenNumber === 1) renderGuideScreen();
-      if (screenNumber === 2) renderProgressScreen();
-      if (screenNumber === 3) renderTermsScreen();
+      if (screenNumber === 2) renderCurriculumScreen();
+      if (screenNumber === 3) renderProgressScreen();
+      if (screenNumber === 4) renderTermsScreen();
 
       // 상단 스크롤 초기화
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -552,7 +872,6 @@
       state.steps.forEach(step => {
         const card = document.createElement('div');
         
-        // 카드 스타일
         card.className = `p-4 rounded-2xl border transition-all ${
           step.completed 
             ? 'bg-slate-50 border-slate-200 opacity-80' 
@@ -610,7 +929,126 @@
       }
     }
 
-    // [화면 2] 진행 상황 모니터링 & 현황
+    // [화면 2] 학과별 교육과정 조회 렌더링
+    function renderCurriculumScreen() {
+      filterCurriculumByCollege();
+    }
+
+    function filterCurriculumByCollege() {
+      const collegeSelect = document.getElementById('curriculum-college-select');
+      const deptSelect = document.getElementById('curriculum-dept-select');
+      const selectedCollege = collegeSelect ? collegeSelect.value : 'all';
+
+      // 필터링된 학과 목록
+      const filteredDepts = selectedCollege === 'all' 
+        ? DEPARTMENTS_CURRICULUM 
+        : DEPARTMENTS_CURRICULUM.filter(d => d.collegeKo === selectedCollege);
+
+      deptSelect.innerHTML = '';
+      filteredDepts.forEach(dept => {
+        const option = document.createElement('option');
+        option.value = dept.id;
+        option.textContent = `${dept.nameKo} (${dept.nameMn})`;
+        if (dept.id === state.selectedDeptId) {
+          option.selected = true;
+        }
+        deptSelect.appendChild(option);
+      });
+
+      // 만약 이전 선택 학과가 현재 필터에 없으면 첫 번째 학과 선택
+      if (!filteredDepts.some(d => d.id === state.selectedDeptId) && filteredDepts.length > 0) {
+        state.selectedDeptId = filteredDepts[0].id;
+        deptSelect.value = state.selectedDeptId;
+      }
+
+      displayCurriculumDetail();
+    }
+
+    function displayCurriculumDetail() {
+      const deptSelect = document.getElementById('curriculum-dept-select');
+      if (deptSelect && deptSelect.value) {
+        state.selectedDeptId = deptSelect.value;
+      }
+
+      const dept = DEPARTMENTS_CURRICULUM.find(d => d.id === state.selectedDeptId) || DEPARTMENTS_CURRICULUM[0];
+      const container = document.getElementById('curriculum-detail-container');
+      if (!container) return;
+
+      container.innerHTML = `
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm space-y-4">
+          <!-- 학과 기본 타이틀 -->
+          <div class="border-b border-slate-100 pb-3 flex items-start justify-between">
+            <div>
+              <span class="text-[11px] font-semibold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full inline-block mb-1">
+                ${dept.collegeKo} · ${dept.collegeMn}
+              </span>
+              <h3 class="text-base font-extrabold text-slate-900 leading-tight">
+                <span class="text-ko">${dept.nameKo}</span>
+                <span class="text-mn block text-sm font-bold text-slate-700 mt-0.5">${dept.nameMn}</span>
+              </h3>
+            </div>
+            <a href="${dept.url}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-slate-100 hover:bg-brand-50 text-slate-600 hover:text-brand-700 transition-all" title="학과 홈페이지 열기">
+              <i data-lucide="globe" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <!-- 졸업 요구 학점 요약 -->
+          <div class="p-3 bg-amber-50 border border-amber-200/80 rounded-xl space-y-1 text-xs">
+            <div class="flex items-center space-x-1.5 text-amber-900 font-bold">
+              <i data-lucide="award" class="w-4 h-4 text-amber-600"></i>
+              <span class="text-ko">졸업 이수 요건 (최소 학점)</span>
+              <span class="text-mn text-xs"> / Төгсөлтийн кредит</span>
+            </div>
+            <p class="text-amber-950 font-semibold text-[11px] leading-snug pl-5 text-ko">
+              ${dept.gradCredits}
+            </p>
+            <p class="text-amber-900 text-[11px] leading-snug pl-5 text-mn">
+              ${dept.gradCreditsMn}
+            </p>
+          </div>
+
+          <!-- 1학년 주요 추천 과목 -->
+          <div class="space-y-1.5 text-xs">
+            <h4 class="font-bold text-slate-800 flex items-center">
+              <i data-lucide="book-marked" class="w-3.5 h-3.5 mr-1.5 text-brand-600"></i>
+              <span class="text-ko">1학년 주요 권장 교과목</span>
+              <span class="text-mn text-slate-500 font-normal"> / 1-р дамжаанд үзэх гол хичээлүүд</span>
+            </h4>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 space-y-1 text-xs">
+              <p class="text-slate-800 font-medium text-ko">${dept.year1SubjectsKo}</p>
+              <p class="text-slate-600 text-[11px] text-mn">${dept.year1SubjectsMn}</p>
+            </div>
+          </div>
+
+          <!-- 신입생 팁 / 유의사항 -->
+          <div class="p-3 bg-sky-50/80 border border-sky-100 rounded-xl space-y-1 text-xs text-sky-950">
+            <p class="font-bold text-sky-900 flex items-center">
+              <i data-lucide="lightbulb" class="w-3.5 h-3.5 mr-1.5 text-sky-600"></i>
+              <span>신입생 수강 팁 / Зөвлөмж</span>
+            </p>
+            <p class="text-[11px] leading-relaxed text-sky-900 text-ko">${dept.tipKo}</p>
+            <p class="text-[11px] leading-relaxed text-sky-800 text-mn">${dept.tipMn}</p>
+          </div>
+
+          <!-- 학과 공식 교육과정 바로가기 버튼들 -->
+          <div class="pt-1 flex flex-col space-y-2">
+            <a href="${dept.curriculumUrl}" target="_blank" rel="noopener noreferrer" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center shadow transition-all">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 mr-1.5"></i>
+              <span class="text-ko">${dept.nameKo} 공식 교육과정 원문 열기</span>
+              <span class="text-mn ml-1">/ Албан ёсны хөтөлбөр</span>
+            </a>
+            <a href="${dept.url}" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center transition-all">
+              <i data-lucide="home" class="w-3.5 h-3.5 mr-1.5 text-slate-500"></i>
+              <span>학과 홈페이지 바로가기</span>
+            </a>
+          </div>
+        </div>
+      `;
+      saveState();
+      lucide.createIcons();
+    }
+
+    // [화면 3] 진행 상황 모니터링 & 현황
     function renderProgressScreen() {
       const completedCount = state.steps.filter(s => s.completed).length;
       const totalCount = state.steps.length;
@@ -662,7 +1100,7 @@
       lucide.createIcons();
     }
 
-    // [화면 3] 필수 6대 용어 사전 렌더링
+    // [화면 4] 필수 6대 용어 사전 렌더링
     function renderTermsScreen(highlightKeyword = null) {
       const container = document.getElementById('terms-container');
       container.innerHTML = '';
@@ -712,7 +1150,7 @@
     }
 
     function goToTermsWithKeyword(keyword) {
-      goToScreen(3);
+      goToScreen(4);
       renderTermsScreen(keyword);
     }
 
@@ -721,7 +1159,7 @@
     // ==========================================
     function resetAllData() {
       if (confirm('모든 수강신청 체크 상태를 초기화할까요? / Сонголтын тэмдэглэгээг шинэчлэх үү?')) {
-        localStorage.removeItem('munsu_app_state_v2');
+        localStorage.removeItem('monsu_app_state_v3');
         state.currentScreen = 1;
         state.steps = JSON.parse(JSON.stringify(DEFAULT_STEPS));
         saveState();
